@@ -2,15 +2,400 @@
 
 ---
 
-<html lang="en">
+<html lang="ja">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>なかこのうた🎵 バックオフィスの日常を歌にしました</title>
+		<meta name="description" content="実務経験20年のバックオフィス専門家が歌う、職場あるある。80年代city pop風で楽しくお届け♪" />
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&display=swap');
+			@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
+			@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800;900&display=swap');
+			
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			
+			body {
+				font-family: 'Inter', 'Noto Sans JP', sans-serif;
+				background: linear-gradient(135deg, #FDF2F8 0%, #FCE7F3 20%, #F3E8FF 40%, #EDE9FE 60%, #DDD6FE 80%, #C7D2FE 100%);
+				min-height: 100vh;
+				color: #1A202C;
+			}
+			
+			.container {
+				max-width: 800px;
+				margin: 0 auto;
+				padding: 20px;
+			}
+			
+			.header {
+				text-align: center;
+				margin-bottom: 50px;
+			}
+			
+			.main-title {
+				font-family: 'Oswald', sans-serif;
+				font-size: 4.5rem;
+				font-weight: 700;
+				color: #C026D3;
+				margin-bottom: 10px;
+				letter-spacing: 0.1em;
+				line-height: 1;
+				text-transform: uppercase;
+			}
+			
+			.subtitle {
+				font-family: 'Zen Kaku Gothic New', 'Noto Sans JP', sans-serif;
+				font-size: 1.6rem;
+				color: #6B46C1;
+				font-weight: 500;
+				margin-bottom: 60px;
+				letter-spacing: 0.1em;
+			}
+			
+			.music-section {
+				background: rgba(255, 255, 255, 0.9);
+				border-radius: 20px;
+				padding: 40px;
+				margin-bottom: 60px;
+				box-shadow: 0 8px 30px rgba(196, 38, 211, 0.1);
+				border: 2px solid #F3E8FF;
+				position: relative;
+			}
+			
+			.section-title {
+				font-size: 1.5rem;
+				color: #1A202C;
+				margin-bottom: 30px;
+				text-align: center;
+				font-weight: 600;
+			}
+			
+			.soundcloud-image {
+				width: 100%;
+				height: 300px;
+				border-radius: 16px;
+				margin-bottom: 30px;
+				box-shadow: 0 8px 25px rgba(14, 165, 233, 0.2);
+				object-fit: cover;
+			}
+			
+			.description {
+				text-align: center;
+				font-size: 1rem;
+				line-height: 1.7;
+				color: #4A5568;
+			}
+			
+			.lyrics-section {
+				background: rgba(255, 255, 255, 0.9);
+				border-radius: 20px;
+				padding: 40px;
+				margin-bottom: 60px;
+				box-shadow: 0 8px 30px rgba(168, 85, 247, 0.1);
+				border: 2px solid #E9D5FF;
+			}
+			
+			.lyrics-toggle {
+				font-family: 'Roboto', sans-serif;
+				background: linear-gradient(45deg, #C026D3, #EC4899);
+				color: white;
+				border: none;
+				padding: 22px 55px;
+				border-radius: 16px;
+				font-size: 1.4rem;
+				font-weight: 700;
+				cursor: pointer;
+				display: block;
+				margin: 0 auto 30px;
+				transition: all 0.3s ease;
+				box-shadow: 0 8px 25px rgba(196, 38, 211, 0.3);
+				letter-spacing: 0.05em;
+				text-transform: uppercase;
+			}
+			
+			.lyrics-toggle:hover {
+				background: linear-gradient(45deg, #A21CAF, #DB2777);
+				transform: translateY(-3px);
+				box-shadow: 0 12px 35px rgba(196, 38, 211, 0.4);
+			}
+			
+			.lyrics-content {
+				display: none;
+				background: #FAF5FF;
+				padding: 30px;
+				border-radius: 16px;
+				border: 1px solid #E9D5FF;
+				line-height: 1.8;
+				font-size: 1.1rem;
+				white-space: pre-line;
+				color: #374151;
+				font-family: 'Noto Sans JP', sans-serif;
+				font-weight: 400;
+				letter-spacing: 0.02em;
+				position: relative;
+			}
+			
+			.song-title {
+				font-size: 1.5rem;
+				font-weight: 700;
+				color: #6B46C1;
+				text-align: center;
+				margin-bottom: 20px;
+				font-family: 'Oswald', sans-serif;
+				letter-spacing: 0.05em;
+			}
+			
+			.lyrics-credits {
+				font-size: 0.95rem;
+				color: #A855F7;
+				font-style: italic;
+				font-family: 'Roboto', sans-serif;
+				line-height: 1.1;
+				text-align: right;
+				margin-top: 20px;
+			}
+			
+			.footer {
+				text-align: center;
+				padding: 40px 20px;
+				color: #A855F7;
+				font-size: 0.9rem;
+				font-family: 'Roboto', sans-serif;
+			}
+			
+			.music-section iframe {
+				pointer-events: auto;
+				position: relative;
+			}
+			
+			.music-section::after {
+				content: '';
+				position: absolute;
+				top: 40px;
+				left: 40px;
+				right: 40px;
+				height: 60px;
+				background: transparent;
+				pointer-events: none;
+				z-index: 1;
+			}
+			
+			.about-section {
+				background: #FFFFFF;
+				border-radius: 8px;
+				padding: 40px;
+				box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+				border: 1px solid #E2E8F0;
+				text-align: center;
+			}
+			
+			.emoji {
+				font-size: 2rem;
+				margin: 0 10px;
+			}
+			
+			@media (max-width: 768px) {
+				.main-title {
+					font-size: 3rem;
+				}
+				
+				.subtitle {
+					font-size: 1.3rem;
+				}
+				
+				.container {
+					padding: 15px;
+				}
+				
+				.music-section, .lyrics-section {
+					padding: 25px;
+				}
+				
+				.lyrics-toggle {
+					padding: 18px 40px;
+					font-size: 1.3rem;
+				}
+				
+				.song-title {
+					font-size: 1.2rem;
+				}
+				
+				.lyrics-desktop {
+					display: none;
+				}
+				
+				.lyrics-mobile {
+					display: block;
+				}
+			}
+			
+			@media (min-width: 769px) {
+				.lyrics-desktop {
+					display: block;
+				}
+				
+				.lyrics-mobile {
+					display: none;
+				}
+			}
+		</style>
 	</head>
 	<body>
-		<h1>Astro</h1>
+		<div class="container">
+			<header class="header">
+				<h1 class="main-title">なかこのうた</h1>
+				<p class="subtitle">バックオフィスの日常</p>
+			</header>
+			
+			<section class="music-section">
+				<iframe width="100%" height="450" scrolling="no" frameborder="no" allow="autoplay" sandbox="allow-scripts allow-same-origin allow-popups-to-escape-sandbox" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2121357366&color=%23f73788&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+				<div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/nakako-518061179" title="Nakako" target="_blank" style="color: #cccccc; text-decoration: none;">Nakako</a> · <a href="https://soundcloud.com/nakako-518061179/81pg3uz29ect" title="それは私に聞かないで" target="_blank" style="color: #cccccc; text-decoration: none;">それは私に聞かないで</a></div>
+			</section>
+			
+			<section class="lyrics-section">
+				<button class="lyrics-toggle" onclick="toggleLyrics()">
+					🎤 歌詞を見る
+				</button>
+				<div class="lyrics-content" id="lyricsContent"><div class="song-title">それは私に聞かないで</div>
+
+
+<div class="lyrics-desktop">
+不具合不具合騒いでる  
+再起動すればだいたい直る
+
+朝のタスクは　夜になっても未完了  
+きっと明日も未完了  
+それでもなぜか回ってる
+
+バックオフィスは今日も無言で  
+世界の裏側支えてる
+
+
+コピー用紙は　きらした人が補充する
+どうして誰もやらないの？
+
+おみやげは　ひとり一個です
+二個持っていったの誰ですか？
+泣く泣く私のお菓子をゆずる
+
+バックオフィスは今日も無言で  
+世界の裏側支えてる
+
+
+このメンションは　なぜ私？
+開けないファイル送らないでください
+
+
+機密情報が多すぎて
+何も言えない 話せない
+
+社長が大きな夢語る
+お金はどこにあるのかな？
+なんとかなってる　不思議な日常
+
+バックオフィスは今日も無言で  
+世界の裏側支えてる
+
+
+3記事で挫折した個人ブログ
+SNSは永遠に苦手です
+主張は特にありません
+方向性はいつでも迷走中
+La La La…
+</div>
+
+<div class="lyrics-mobile">
+不具合不具合騒いでる  
+再起動すればだいたい直る
+
+朝のタスクは
+夜になっても未完了  
+きっと明日も未完了  
+それでもなぜか回ってる
+
+バックオフィスは
+今日も無言で  
+世界の裏側支えてる
+
+
+コピー用紙は
+きらした人が補充する
+どうして誰もやらないの？
+
+おみやげは
+ひとり一個です
+二個持っていったの
+誰ですか？
+泣く泣く私の
+お菓子をゆずる
+
+バックオフィスは
+今日も無言で  
+世界の裏側支えてる
+
+
+このメンションは
+なぜ私？
+開けないファイル
+送らないでください
+
+
+機密情報が多すぎて
+何も言えない 話せない
+
+社長が大きな夢語る
+お金はどこにあるのかな？
+なんとかなってる
+不思議な日常
+
+バックオフィスは
+今日も無言で  
+世界の裏側支えてる
+
+
+3記事で挫折した個人ブログ
+SNSは永遠に苦手です
+主張は特にありません
+方向性はいつでも迷走中
+La La La…
+</div>
+
+<div class="lyrics-credits">
+Lyrics: Nakako<br>
+Music & Voice created by SUNO
+</div></div>
+			</section>
+			
+		</div>
+		
+		<footer class="footer">
+			© 2025 Nakako Songs. All rights reserved.
+		</footer>
+		
+		<script>
+			document.addEventListener('DOMContentLoaded', function() {
+				window.toggleLyrics = function() {
+					const content = document.getElementById('lyricsContent');
+					const button = document.querySelector('.lyrics-toggle');
+					
+					if (content && button) {
+						if (content.style.display === 'none' || content.style.display === '') {
+							content.style.display = 'block';
+							button.innerHTML = '🎤 歌詞を閉じる';
+						} else {
+							content.style.display = 'none';
+							button.innerHTML = '🎤 歌詞を見る';
+						}
+					}
+				};
+			});
+		</script>
 	</body>
 </html>
